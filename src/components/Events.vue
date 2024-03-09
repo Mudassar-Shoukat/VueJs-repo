@@ -2,15 +2,18 @@
     <div>
       <div id="click_event">
       <h3> Click Event</h3>
-      <button @click="increment()">{{ `Increment is: ${num}` }}</button>
+      <button @click="increment()" >{{ `Increment is: ${num}` }}</button>
     </div>
     <div id="keyboard_event">
       <h3>Keyborad Event</h3>
-      <span> Enter name of User:  <input type="text" v-on:keydown="down"></span>
+      <span> Enter name of User:  <input type="text" v-on:keydown="down" ></span>
       <h2 >Press key is:- {{ KeyboardEvent }}</h2>
     </div>
+    
     </div>
+    
   </template>
+  
   
   <script>
   export default {
@@ -18,6 +21,7 @@
       return {
         num: 0,
         KeyboardEvent:"",
+        
       };
     },
     methods: {

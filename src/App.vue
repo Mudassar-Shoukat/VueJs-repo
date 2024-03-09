@@ -1,19 +1,15 @@
 <template>
   <div>
-    <optionsapi></optionsapi>
-    <compositionapi></compositionapi>
+    <Forloop></Forloop>
   </div>
 </template>
 
 <script>
-import optionsapi from "./components/Optionapi.vue";
-import Compositionapi from "./components/Compositionapi.vue";
+
+import Forloop from "./components/Forloop.vue";
 export default {
   components: {
-    optionsapi,
-    Compositionapi,
+    Forloop,
   },
 };
 </script>
-
-
