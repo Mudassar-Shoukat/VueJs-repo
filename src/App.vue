@@ -3,6 +3,7 @@
     <Headercomponent></Headercomponent>
     <Bodycomponent></Bodycomponent>
     <Footercomponent></Footercomponent>
+
   </div>
 </template>
 
