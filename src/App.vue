@@ -1,15 +1,18 @@
 <template>
   <div>
-    <Forloop></Forloop>
+    <Headercomponent></Headercomponent>
+    <Bodycomponent></Bodycomponent>
+    <Footercomponent></Footercomponent>
   </div>
 </template>
 
 <script>
-
-import Forloop from "./components/Forloop.vue";
+import Headercomponent from './components/Header.vue'
+import Bodycomponent from './components/Body.vue'
+import Footercomponent from './components/Footer.vue'
 export default {
   components: {
-    Forloop,
+    Headercomponent, Bodycomponent, Footercomponent,
   },
 };
 </script>
