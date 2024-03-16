@@ -1,8 +1,8 @@
 <template>
   <div id="Composition_main">
     <h2>Example of Composition API</h2>
-    <p>Decrement of Number : {{ decrement }}</p>
-    <button @click="remove" >Remove one Value</button>
+    <p>Decrement of Number : {{decrement }}</p>
+    <button @click="remove" > Remove one Value</button>
   </div>
 </template>
 
