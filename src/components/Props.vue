@@ -1,34 +1,24 @@
 <template>
-    <div>
-      <header class="header-slot">
-        <slot name="header"></slot>
-      </header>
-      <main class="main-slot">
-        <slot></slot>
-      </main>
-      <footer class="footer-slot">
-        <slot name="footer"></slot>
-       
-      </footer>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-   
-  };
-  </script>
-  
-  <style scoped>
-  .header-slot {
-    background: #e8d2d2;
-    padding: 10px 6px;
-  }
-  .main-slot {
-    padding: 16px 6px;
-  }
-  .footer-slot {
-    background: #eee;
-    padding: 10px 6px;
-  }
-  </style>
+  <div id="propsbox">
+    <h1>{{ name }}</h1>
+    <p>{{ price }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["name", "price"],
+};
+</script>
+
+<style scoped>
+#propsbox {
+  height: 100px;
+  width: 220px;
+  background: rgb(228, 221, 221);
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(158, 170, 158);
+  padding: 10px;
+}
+</style>
