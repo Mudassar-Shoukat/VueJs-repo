@@ -7,7 +7,11 @@
 
 <script>
 export default {
-  props: ["name", "price"],
+  // props: ["name", "price"],
+  props:{
+    name:String,
+    price:Number,
+  }
 };
 </script>
 

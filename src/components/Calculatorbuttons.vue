@@ -1,28 +1,43 @@
 <template>
-    <div>
-      <button id="keys" v-for="n in [
-          '7', '8', '9', '/',
-          '4', '5', '6', '*',
-          '1', '2', '3', '-',
-          'C', '0', '.', '=',
-        ]" :key="n" @click="keyvalue(n)">{{ n }}</button>
-       
-    </div>
-  </template>
+  <div>
+    <button v-for="n in buttons" :key="n" @click="handleInput(n)" id="keys">{{ n }}</button>
+  </div>
+</template>
 
-
- <script>
- export default {
-   data() {
+<script>
+export default {
+  props: {
+    currentValue: String,
+  },
+  data() {
     return {
-        value(n){
-            console.log(n);
-            
-        }
-    }
-   },
- }
- </script>
+      buttons: [
+        '7', '8', '9', '/',
+        '4', '5', '6', '*',
+        '1', '2', '3', '-',
+        'C', '0', '.', '=',
+      ],
+    };
+  },
+  methods: {
+    handleInput(value) {
+      if (value === 'C') {
+        // console.log("press C key");
+        this.$emit('input-value', ''); 
+      } else if (value === '=') {
+        // console.log("press = key");
+        this.$emit('calculate'); 
+      } else {
+        this.$emit('input-value', value); 
+        
+      }
+    },
+  },
+};
+</script>
+
+
+
 
   <style scoped>
   #keys {

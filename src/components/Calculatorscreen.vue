@@ -1,17 +1,17 @@
 <template>
   <div class="screen">
-
-    <input type="text">
-   
+    <input type="text" :value="currentValue" />
   </div>
-
 </template>
 
 <script>
 export default {
- 
+  props: {
+    currentValue: String,
+  },
 };
 </script>
+
 
 <style scoped>
 .screen input {

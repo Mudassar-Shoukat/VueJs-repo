@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Child Component</h1>
+   
     <button @click="emitcall" >Call Emit</button>
   </div>
 </template>
