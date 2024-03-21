@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Buttontransitions from './Buttontransitions.vue'
+import Buttontransitions from './components/Buttontransitions.vue'
   export default {
   components: { Buttontransitions },
     
