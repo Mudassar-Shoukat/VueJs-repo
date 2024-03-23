@@ -1,14 +1,15 @@
 <template>
   <div>
-<buttontransitions/>
+<Movieapp/>
   </div>
 </template>
 
 <script>
-import Buttontransitions from './components/Buttontransitions.vue'
+import Movieapp from "./components/Movieapp.vue";
   export default {
-  components: { Buttontransitions },
-    
+    components:{
+      Movieapp
+    }
   }
 </script>
 
