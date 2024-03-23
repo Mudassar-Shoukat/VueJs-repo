@@ -1,103 +1,73 @@
 <template>
   <div>
-    <body>
-      <header>
-        <h1>Search Your Movies Here!</h1>
-      </header>
-      <main>
-        <input type="text" id="searchInput"  @keyup="searchMovies()"
-          placeholder="Search for a movie..."  />
-        <div id="MoviesGrid"> </div>
-      </main>
-    </body>
+    <header>
+      <h1>Search Your Movies Here!</h1>
+    </header>
+    <main>
+      <input type="text" v-model="searchTerm" @keyup="searchMovies" placeholder="Search for a movie..." />
+
+      <div v-if="isLoading" class="loading">Loading movies...</div>
+      <div v-else-if="!movies.length" class="no-results">
+        No movies found!
+      </div>
+      <div v-else class="movies-grid">
+        <div v-for="movie in movies" :key="movie.imdbID" class="movie-card">
+          <img :src="movie.Poster" :alt="movie.Title" />
+          <a :href="`http://www.omdbapi.com/?i=${movie.imdbID}&apikey=27f5875a`" target="_blank">{{ movie.Title }}</a>
+          <p>{{ movie.Year }}</p>
+        </div>
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  mounted() {
-    this.fetchMovies();
-    // setTimeout(this.searchMovies(), 8000);
+  data() {
+    return {
+      searchTerm: '',
+      movies: [],
+      isLoading: false,
+      apiKey: '27f5875a',
+    };
   },
+  mounted() {
+    this.fetchMovies('movie');
 
+  },
   methods: {
-    fetchMovies() {
-      const apiKey = "http://www.omdbapi.com/?i=tt3896198&apikey=27f5875a";
-      const MoviesGrid = document.getElementById("MoviesGrid");
-      MoviesGrid.innerHTML = "<p>Loading movies...</p>";
-      const randomSearchTerms = ["movie"];
+    fetchMovies(searchTerm) {
+      this.isLoading = true;
+      const url = `http://www.omdbapi.com/?s=${searchTerm}&apikey=${this.apiKey}`;
+      axios.get(url).then((response) => {
+        if (response.data.Search) {
+          this.movies = response.data.Search;
+        } else {
+          this.movies = [];
+        }
+      })
 
-      fetch(`${apiKey}&s=${randomSearchTerms}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.Search && data.Search.length > 0) {
-            this.moviesToShow(data.Search);
-          } else {
-            MoviesGrid.innerHTML = "<p>No random movies found!</p>";
-          }
-        });
+      try {
+        this.isLoading = false;
+
+      } catch (error) {
+        console.log(error);
+      }
     },
-
-    moviesToShow(movies) {
-      const MoviesGrid = document.getElementById("MoviesGrid");
-
-      // Clear previous results
-      MoviesGrid.innerHTML = "";
-
-      // Display each movie in the results
-      movies.forEach((movie) => {
-        const movieCard = document.createElement("div");
-        movieCard.classList.add("movie-card");
-        movieCard.innerHTML = `
-            <img src="${movie.Poster}" alt="${movie.Title}">
-            <a href="http://www.omdbapi.com/?i=tt3896198&apikey=27f5875a" target="_blank">${movie.Title}</a>
-            <p>${movie.Year}</p>
-          `;
-        MoviesGrid.appendChild(movieCard);
-      });
-    },
-
     searchMovies() {
-      const apiKey = "http://www.omdbapi.com/?i=tt3896198&apikey=27f5875a";
-      const searchInput = document.getElementById("searchInput").value;
-      console.log(searchInput);
-      const MoviesGrid = document.getElementById("MoviesGrid");
-
-      if (searchInput.trim() !== "") {
-        MoviesGrid.innerHTML = "<p>Loading movies...</p>";
-
-        fetch(`${apiKey}&s=${searchInput}`)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            if (data.Search) {
-              this.moviesToShow(data.Search);
-            } else {
-              MoviesGrid.innerHTML =
-                "<p>No movies found with the given name!</p>";
-            }
-          });
+      if (this.searchTerm.trim() !== '') {
+        this.fetchMovies(this.searchTerm);
       }
     },
   },
 };
 </script>
 
-<style>
-body {
-  /* background-color: #073838; */
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: sans-serif;
-}
-
+<style scoped>
 header {
   width: 100%;
   color: #191414;
-  /* padding: 1rem; */
   margin-top: 19px;
   text-align: center;
 }
@@ -116,11 +86,12 @@ input {
   box-shadow: 0 3px 3px rgb(234, 239, 238);
   width: 350px;
 }
+
 ::placeholder {
   color: rgb(179, 167, 167);
 }
 
-#MoviesGrid {
+.movies-grid {
   margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +107,6 @@ input {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  /* background-color: #f4f4f7; */
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease-in-out;
@@ -163,13 +133,16 @@ input {
 .movie-card :hover {
   cursor: pointer;
 }
+
 .movie-card a {
   height: 22px;
   width: 300px;
 }
+
 .movie-card a:hover {
-  color: red;
+  color: rgb(113, 127, 22);
 }
+
 .movie-card p {
   height: 22px;
   width: 300px;
