@@ -1,7 +1,7 @@
 
 <template>
   <div id="app" @click="handleClick">
-    <h3>Click Button</h3>
+    <h3>Click Button </h3>
     <button @click="toggleShow">Show Modal</button>
     <transition >
       <span v-show="isShowing" class="modal" id="model">

@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
     border: solid rgb(194, 176, 176) 1px;
     width: 80%;

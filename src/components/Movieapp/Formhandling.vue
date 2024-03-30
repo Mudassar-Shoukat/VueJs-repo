@@ -1,5 +1,5 @@
-<template>
-  <div class="main">
+<template >
+  <div class="main" >
     <h3>First Submit Form in vue js</h3>
     <!-- form in vue js 3 -->
     <form @submit.prevent="submit_form">
@@ -63,6 +63,7 @@
 <script>
 import axios from "axios";
 export default {
+ 
   data() {
     return {
       formvalue: {
@@ -86,22 +87,21 @@ export default {
 };
 </script>
 
-<style>
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #bebae9;
-}
+<style scoped>
+
 
 /* Main container styling */
 .main {
-  background-color: #c0c3d4;
-  border-radius: 13px;
-  box-shadow: 0 0 10px #b1a6c5;
+  background-color: #f5f6f8;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #dbd9df;
   padding: 10px;
-  width: 450px;
+  width: 400px;
   height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
 }
 
 form {
@@ -119,11 +119,11 @@ h3 {
 }
 
 button {
-  background: #c3c5cc;
+  background: #ecedf1;
   height: 30px;
   width: 130px;
   border: 1px solid #aeb0bd;
-  box-shadow: 0px 0px 21px -1px #c7c8d3;
+  /* box-shadow: 0px 0px 21px -1px #c7c8d3; */
   cursor: pointer;
   margin-top: 12px;
 }
